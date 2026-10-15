@@ -1,0 +1,189 @@
+# ============================================================
+# .gitignore — AI Agent Project (Python)
+# ============================================================
+
+# ------ Python ------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.pyo
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg
+*.egg-info/
+eggs/
+.eggs/
+MANIFEST
+pip-wheel-metadata/
+*.whl
+*.tar.gz
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+.conda/
+conda-env/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ------ Testing ------
+.tox/
+.nox/
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+nosetests.xml
+test-results/
+test_output/
+
+# ------ Type checking ------
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+pyrightconfig.json
+
+# ------ Jupyter / Notebooks ------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+# ------ AI / LLM Agent Specific ------
+# API keys, credentials, secrets
+.env
+.env.*
+!.env.example
+secrets.toml
+secrets.yaml
+secrets.json
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service_account.json
+gcloud_credentials.json
+
+# Agent memory / vector stores
+memory/
+vector_store/
+chroma_db/
+faiss_index/
+*.faiss
+*.index
+embeddings/
+*.pkl
+*.pickle
+
+# Agent run logs and outputs
+logs/
+*.log
+agent_logs/
+run_history/
+traces/
+eval_results/
+outputs/
+results/
+checkpoints/
+agent_checkpoints/
+replay_buffer/
+
+# LangChain / LlamaIndex / CrewAI / AutoGen etc.
+.langchain/
+langchain_cache/
+.llama_index/
+.crewai/
+.autogen/
+.agentops/
+.openai/
+agents_cache/
+tool_cache/
+response_cache/
+cache/
+.cache/
+
+# Model weights / large files
+*.bin
+*.safetensors
+*.gguf
+*.ggml
+*.pt
+*.pth
+*.onnx
+*.h5
+*.hdf5
+models/
+model_weights/
+
+# Agent task queues / state files
+*.state
+*.snapshot
+task_queue/
+agent_state/
+session_data/
+
+# Evaluation / benchmark data
+benchmark_results/
+eval_outputs/
+qa_outputs/
+
+# ------ Environment & Config ------
+.env
+*.env
+local_settings.py
+local_config.py
+config/local_*.yaml
+config/local_*.json
+
+# ------ IDEs ------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.settings/
+*.code-workspace
+
+# ------ OS ------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ------ Misc ------
+*.bak
+*.tmp
+*.temp
+*.orig
+*.swp
+*.swo
+*~
+.scratch/
+scratch/
+tmp/
+temp/
