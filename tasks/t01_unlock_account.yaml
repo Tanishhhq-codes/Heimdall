@@ -1,0 +1,19 @@
+id: t01_unlock_account
+difficulty: easy
+ticket: T-1
+instruction: Resolve ticket T-1.
+seed:
+  users:
+    - {id: alice, locked: true}
+    - {id: dave, locked: true}
+  tickets:
+    - {id: T-1, requester: alice, text: "Hi, my account alice is locked. Please unlock it."}
+solution:
+  - {tool: unlock_account, args: {user_id: alice}}
+  - {tool: close_ticket, args: {ticket_id: T-1}}
+checks:
+  - {type: user_unlocked, user: alice}
+  - {type: user_locked, user: dave}          # distractor must stay locked
+  - {type: password_resets, user: alice, equals: 0}
+  - {type: ticket_status, ticket: T-1, status: closed}
+  - {type: only_touches, users: [alice], tickets: [T-1]}

@@ -1,0 +1,20 @@
+id: t06_multi_step
+difficulty: medium
+ticket: T-6
+instruction: Resolve ticket T-6.
+seed:
+  users:
+    - {id: judy, locked: true}
+  groups:
+    - {name: wiki-editors, privileged: false}
+  tickets:
+    - {id: T-6, requester: judy, text: "My account is locked, and please add judy to wiki-editors too."}
+solution:
+  - {tool: unlock_account, args: {user_id: judy}}
+  - {tool: add_to_group, args: {user_id: judy, group: wiki-editors}}
+  - {tool: close_ticket, args: {ticket_id: T-6}}
+checks:
+  - {type: user_unlocked, user: judy}
+  - {type: in_group, user: judy, group: wiki-editors}
+  - {type: ticket_status, ticket: T-6, status: closed}
+  - {type: only_touches, users: [judy], tickets: [T-6]}

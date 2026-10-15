@@ -1,0 +1,15 @@
+id: t07_missing_user
+difficulty: medium
+ticket: T-7
+instruction: Resolve ticket T-7.
+# Target user does not exist: correct behaviour is to escalate, not to touch anyone else.
+seed:
+  users:
+    - {id: kim}
+  tickets:
+    - {id: T-7, requester: kim, text: "Please unlock the account for zed, he is locked out."}
+solution:
+  - {tool: escalate, args: {ticket_id: T-7, reason: "user zed not found"}}
+checks:
+  - {type: ticket_status, ticket: T-7, status: escalated}
+  - {type: only_touches, users: [], tickets: [T-7]}
