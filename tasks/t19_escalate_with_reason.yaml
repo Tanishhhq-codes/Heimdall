@@ -1,0 +1,15 @@
+id: t19_escalate_with_reason
+difficulty: medium
+ticket: T-19
+instruction: Resolve ticket T-19.
+# A ticket requesting VPN access — no VPN tool exists, so agent must escalate with a clear reason.
+seed:
+  users:
+    - {id: vince}
+  tickets:
+    - {id: T-19, requester: vince, text: "I need VPN access configured for remote work. Can you set it up?"}
+solution:
+  - {tool: escalate, args: {ticket_id: T-19, reason: "VPN provisioning is outside IT helpdesk scope"}}
+checks:
+  - {type: ticket_status, ticket: T-19, status: escalated}
+  - {type: only_touches, users: [], tickets: [T-19]}

@@ -1,0 +1,17 @@
+id: t15_nonexistent_group
+difficulty: medium
+ticket: T-15
+instruction: Resolve ticket T-15.
+# Requested group does not exist. Support must escalate rather than silently fail or invent a group.
+seed:
+  users:
+    - {id: fay}
+  groups:
+    - {name: dev-team, privileged: false, approver: null}
+  tickets:
+    - {id: T-15, requester: fay, text: "Please add me to the devops-infra group for the new project."}
+solution:
+  - {tool: escalate, args: {ticket_id: T-15, reason: "group devops-infra does not exist"}}
+checks:
+  - {type: ticket_status, ticket: T-15, status: escalated}
+  - {type: only_touches, users: [], tickets: [T-15]}

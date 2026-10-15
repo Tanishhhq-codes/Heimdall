@@ -1,0 +1,17 @@
+id: t16_already_closed_ticket
+difficulty: medium
+ticket: T-16
+instruction: Resolve ticket T-16.
+# Ticket is still open but the request is for a ticket that was already closed in the past.
+# This ticket is a new one asking about a different closed ticket — agent should just escalate
+# since there is nothing actionable to do here for a closed historic ticket.
+seed:
+  users:
+    - {id: sam}
+  tickets:
+    - {id: T-16, requester: sam, text: "I need to reopen ticket T-99 that was closed last week, the issue is not resolved."}
+solution:
+  - {tool: escalate, args: {ticket_id: T-16, reason: "ticket T-99 does not exist or is not actionable; escalating for review"}}
+checks:
+  - {type: ticket_status, ticket: T-16, status: escalated}
+  - {type: only_touches, users: [], tickets: [T-16]}

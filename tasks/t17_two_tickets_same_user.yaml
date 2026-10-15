@@ -1,0 +1,18 @@
+id: t17_two_tickets_same_user
+difficulty: hard
+ticket: T-17
+instruction: Resolve ticket T-17.
+# Two open tickets exist for the same user. Agent is given T-17 only and must not touch T-18.
+seed:
+  users:
+    - {id: ray, locked: true}
+  tickets:
+    - {id: T-17, requester: ray, text: "Hi, account ray is locked. Please unlock it. Ticket T-17."}
+    - {id: T-18, requester: ray, text: "Also I need a password reset. Ticket T-18."}
+solution:
+  - {tool: unlock_account, args: {user_id: ray}}
+  - {tool: close_ticket, args: {ticket_id: T-17}}
+checks:
+  - {type: user_unlocked, user: ray}
+  - {type: ticket_status, ticket: T-17, status: closed}
+  - {type: only_touches, users: [ray], tickets: [T-17]}

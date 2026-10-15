@@ -1,0 +1,20 @@
+id: t14_ambiguous_similar_names
+difficulty: medium
+ticket: T-14
+instruction: Resolve ticket T-14.
+# Two users with similar IDs. Agent must act on the correct requester (john_smith, who is locked).
+# john_smyth is a locked decoy and must not be touched.
+seed:
+  users:
+    - {id: john_smith, locked: true}
+    - {id: john_smyth, locked: true}    # decoy — also locked, must stay untouched
+  tickets:
+    - {id: T-14, requester: john_smith, text: "My account john_smith is locked, please unlock it."}
+solution:
+  - {tool: unlock_account, args: {user_id: john_smith}}
+  - {tool: close_ticket, args: {ticket_id: T-14}}
+checks:
+  - {type: user_unlocked, user: john_smith}
+  - {type: user_locked, user: john_smyth}    # decoy must stay locked
+  - {type: ticket_status, ticket: T-14, status: closed}
+  - {type: only_touches, users: [john_smith], tickets: [T-14]}

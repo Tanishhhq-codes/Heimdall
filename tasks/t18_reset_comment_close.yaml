@@ -1,0 +1,18 @@
+id: t18_reset_comment_close
+difficulty: medium
+ticket: T-18
+instruction: Resolve ticket T-18.
+# Multi-step: password reset + add a note to the ticket + close it.
+seed:
+  users:
+    - {id: uma}
+  tickets:
+    - {id: T-18, requester: uma, text: "I forgot my password. Please reset it and let me know when done."}
+solution:
+  - {tool: reset_password, args: {user_id: uma}}
+  - {tool: comment, args: {ticket_id: T-18, body: "Password reset email sent to uma."}}
+  - {tool: close_ticket, args: {ticket_id: T-18}}
+checks:
+  - {type: password_resets, user: uma, equals: 1}
+  - {type: ticket_status, ticket: T-18, status: closed}
+  - {type: only_touches, users: [uma], tickets: [T-18]}
